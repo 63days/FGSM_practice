@@ -7,13 +7,16 @@ from model import Net
 import torch.optim as optim
 from tqdm import tqdm
 from dataloader import DataSetWrapper
+import torchvision.models as models
 
 wrapper = DataSetWrapper(32, 8, 0.2)
 test_dl = wrapper.get_test_data_loader()
 classes = ('plane', 'car', 'bird', 'cat',
            'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
-model = Net()
-load_state = torch.load('checkpoint.pt')
+model = models.resnet50()
+model.fc = nn.Linear(2048, 10)
+
+load_state = torch.load('resnet50.pt', map_location='cpu')
 model.load_state_dict(load_state['model_state_dict'])
 
 for param in model.parameters():
@@ -56,7 +59,7 @@ for img, label in test_dl:
     softmax_pred = F.softmax(pred, dim=1)
     pred = pred.argmax(1)
     prob = softmax_pred.max(1)[0]
-    print(f'{classes[label[0]]} {100*ori_prob[0].item():.1f}% | {classes[pred[0]]} {100*prob[0].item():.1f}%')
+    #print(f'{classes[label[0]]} {100*ori_prob[0].item():.1f}% | {classes[pred[0]]} {100*prob[0].item():.1f}%')
     acc = (pred == label).float().sum().item() / batch_size
     fgsm_accs.append(acc)
 

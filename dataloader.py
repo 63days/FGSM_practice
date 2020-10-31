@@ -5,11 +5,6 @@ from torch.utils.data.sampler import SubsetRandomSampler
 import numpy as np
 from torch.utils.data import DataLoader
 
-transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-
-
 class DataSetWrapper(object):
     def __init__(self, batch_size, num_workers, valid_size):
         self.batch_size = batch_size
@@ -17,7 +12,8 @@ class DataSetWrapper(object):
         self.valid_size = valid_size
         self.transform = transforms.Compose(
             [transforms.ToTensor(),
-             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+             transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                 std=[0.229, 0.224, 0.225])])
 
     def get_train_validation_data_loaders(self):
         ds = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=self.transform)
