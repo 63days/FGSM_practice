@@ -17,3 +17,8 @@ Modern machine learning models are vulnerable to adversarial examples. Adversari
 
 ## Reference
 [Explaining and Harnessing Adversarial Examples(ICLR'15), Ian Goodfellow](https://arxiv.org/abs/1412.6572)
+
+
+
+
+For more details, https://www.youtube.com/watch?v=YgmhBPLWo8I&t=497s
