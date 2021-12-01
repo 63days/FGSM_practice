@@ -1,4 +1,4 @@
-# Fast Gradient Sign Method: Pytorch Implementation
+# Explaining and Harnessing Adversarial Examples: Pytorch Implementation
 Pytorch implementation of [Explaining and Harnessing Adversarial Examples](https://arxiv.org/abs/1412.6572).
 
 ![image](https://user-images.githubusercontent.com/37788686/97774252-89c0eb00-1b99-11eb-9af1-f213c0b89a9d.png)
